@@ -17,7 +17,7 @@ public class JwtTokenProvider {
 
     private static final String SECRET = "YourSuperSecretKeyThatIsAtLeast32BytesLong!";
     private final Key JWT_SECRET = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
-    private final long JWT_EXPIRATION = 86400000L; // 24 часа
+    private final long JWT_EXPIRATION = 86400000L;
 
     public String generateToken(Authentication authentication) {
         String username = authentication.getName();
@@ -30,8 +30,6 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-
-    // Извлечение токена из заголовка Authorization
     public String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
@@ -40,7 +38,6 @@ public class JwtTokenProvider {
         return null;
     }
 
-    // Проверка валидности токена
     public boolean validateToken(String token) {
         try {
             Jwts.parser()
@@ -53,7 +50,6 @@ public class JwtTokenProvider {
         }
     }
 
-    // Извлечение имени пользователя из токена
     public String getUsernameFromToken(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(JWT_SECRET)

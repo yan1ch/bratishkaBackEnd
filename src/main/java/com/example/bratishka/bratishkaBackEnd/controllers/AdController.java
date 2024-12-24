@@ -2,6 +2,7 @@ package com.example.bratishka.bratishkaBackEnd.controllers;
 
 import com.example.bratishka.bratishkaBackEnd.models.Ad;
 import com.example.bratishka.bratishkaBackEnd.services.AdService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,13 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ads")
+@RequiredArgsConstructor
 public class AdController {
 
     private final AdService adService;
-
-    public AdController(AdService adService) {
-        this.adService = adService;
-    }
 
     @GetMapping
     public ResponseEntity<List<Ad>> getAllAds() {

@@ -2,21 +2,18 @@ package com.example.bratishka.bratishkaBackEnd.services;
 
 import com.example.bratishka.bratishkaBackEnd.models.User;
 import com.example.bratishka.bratishkaBackEnd.repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder; // Для хэширования паролей
-
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> getAllUsers() {
@@ -31,7 +28,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        // Хэшируем пароль перед сохранением
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
@@ -41,7 +37,6 @@ public class UserServiceImpl implements UserService {
         User existingUser = getUserById(id);
         existingUser.setUsername(updatedUser.getUsername());
         if (updatedUser.getPassword() != null) {
-            // Если передан новый пароль, хэшируем его
             existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         }
         existingUser.setRole(updatedUser.getRole());
