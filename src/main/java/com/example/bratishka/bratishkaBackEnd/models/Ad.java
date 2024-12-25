@@ -1,20 +1,53 @@
 package com.example.bratishka.bratishkaBackEnd.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="ad")
-@Data
 public class Ad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "link")
+    @NotNull(message = "Link can not be null")
+    @Column(name = "link", nullable = false)
     private String link;
 
-    @Column(name = "number")
+    @NotNull(message = "number can not be null")
+    @Column(name = "number", nullable = false)
     private int number;
+
+    public Ad() {}
+
+    public Ad(String link, int number) {
+        this.link = link;
+        this.number = number;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public @NotNull(message = "Link can not be null") String getLink() {
+        return link;
+    }
+
+    public void setLink(@NotNull(message = "Link can not be null") String link) {
+        this.link = link;
+    }
+
+    @NotNull(message = "number can not be null")
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(@NotNull(message = "number can not be null") int number) {
+        this.number = number;
+    }
 }
