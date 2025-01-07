@@ -31,7 +31,6 @@ public class JwtTokenProvider {
     }
 
     public String resolveToken(HttpServletRequest request) {
-        //Comm
         return request.getHeader("Authorization");
     }
 
