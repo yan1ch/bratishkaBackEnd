@@ -1,6 +1,8 @@
 package com.example.bratishka.bratishkaBackEnd.controllers;
 
 import com.example.bratishka.bratishkaBackEnd.models.Barber;
+import com.example.bratishka.bratishkaBackEnd.models.Shop;
+import com.example.bratishka.bratishkaBackEnd.repositories.BarberRepository;
 import com.example.bratishka.bratishkaBackEnd.services.BarberService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,15 +13,19 @@ import java.util.List;
 @RequestMapping("/barbers")
 public class BarberController {
     private final BarberService barberService;
+    private final BarberRepository barberRepository;
 
-    public BarberController(BarberService barberService) {
+    public BarberController(BarberService barberService, BarberRepository barberRepository) {
         this.barberService = barberService;
+        this.barberRepository = barberRepository;
     }
 
-    @GetMapping("/shops/links")
-    public ResponseEntity<List<String>> getAllShopLinks() {
-        return ResponseEntity.ok(barberService.getAllShopLinks());
+    @PostMapping("/get")
+    public ResponseEntity<List<Barber>> getBarbersByShop(@RequestBody Shop shop) {
+        List<Barber> barbers = barberService.getBarbersByShop(shop);
+        return ResponseEntity.ok(barbers);
     }
+
 
     @PostMapping("/add")
     public ResponseEntity<Barber> addBarber(@RequestBody Barber barber) {

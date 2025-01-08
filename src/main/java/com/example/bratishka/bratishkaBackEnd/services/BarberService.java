@@ -19,12 +19,6 @@ public class BarberService {
         this.shopRepository = shopRepository;
     }
 
-    public List<String> getAllShopLinks() {
-        return shopRepository.findAll().stream()
-                .map(Shop::getLink)
-                .toList();
-    }
-
     public Barber addBarber(Barber barber) {
         return barberRepository.save(barber);
     }
@@ -32,4 +26,9 @@ public class BarberService {
     public void deleteBarberById(long id) {
         barberRepository.deleteById(id);
     }
+
+    public List<Barber> getBarbersByShop(Shop shop) {
+        return barberRepository.findByShop(shop);
+    }
+
 }
