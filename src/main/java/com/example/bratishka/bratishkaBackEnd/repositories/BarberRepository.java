@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface BarberRepository extends JpaRepository<Barber, Long> {
-    List<Barber> findByShop(Shop shop);
+    List<Barber> findAllByShop(Shop shop);
 }

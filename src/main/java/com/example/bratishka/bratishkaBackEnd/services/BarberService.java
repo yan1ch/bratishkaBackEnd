@@ -28,7 +28,7 @@ public class BarberService {
     }
 
     public List<Barber> getBarbersByShop(Shop shop) {
-        return barberRepository.findByShop(shop);
+        return barberRepository.findAllByShop(shop);
     }
 
 }
