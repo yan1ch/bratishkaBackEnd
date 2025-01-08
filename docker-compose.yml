@@ -21,8 +21,6 @@ services:
       SPRING_DATASOURCE_PASSWORD: kirill123
     ports:
     - "8080:8080"
-    volumes:
-    - /home/user1/pari/images:/home/user1/pari/images
     depends_on:
     - postgres
 
