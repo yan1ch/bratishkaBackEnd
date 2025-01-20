@@ -27,4 +27,30 @@ public class AdService {
     public void deleteAdById(Long id) {
         adRepository.deleteById(id);
     }
+
+    public Ad swapLeft(Ad ad) {
+        Ad adLeft = adRepository.findClosestLessThan(ad.getNumber());
+        if (adLeft != null) {
+            int temp = ad.getNumber();
+            ad.setNumber(adLeft.getNumber());
+            adLeft.setNumber(temp);
+
+            adRepository.save(adLeft);
+            adRepository.save(ad);
+        }
+        return ad;
+    }
+
+    public Ad swapRight(Ad ad) {
+        Ad adRight = adRepository.findClosestGreaterThan(ad.getNumber());
+        if (adRight != null) {
+            int temp = ad.getNumber();
+            ad.setNumber(adRight.getNumber());
+            adRight.setNumber(temp);
+
+            adRepository.save(adRight);
+            adRepository.save(ad);
+        }
+        return ad;
+    }
 }

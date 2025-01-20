@@ -41,6 +41,29 @@ public class AdController {
         return new ResponseEntity<>(createdAd, HttpStatus.CREATED);
     }
 
+    @PostMapping("/swapLeft")
+    public ResponseEntity<Ad> swapLeft(@Valid @RequestBody Ad ad, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().forEach(error -> {
+                System.out.println(error.getDefaultMessage());
+            });
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        ad = adService.swapLeft(ad);
+        return new ResponseEntity<>(ad, HttpStatus.OK);
+    }
+
+    @PostMapping("/swapRight")
+    public ResponseEntity<Ad> swapRight(@Valid @RequestBody Ad ad, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().forEach(error -> {
+                System.out.println(error.getDefaultMessage());
+            });
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        ad = adService.swapRight(ad);
+        return new ResponseEntity<>(ad, HttpStatus.OK);
+    }
 
 
     @DeleteMapping("/{id}")

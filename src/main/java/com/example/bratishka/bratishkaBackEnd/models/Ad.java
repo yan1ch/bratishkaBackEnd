@@ -2,9 +2,13 @@ package com.example.bratishka.bratishkaBackEnd.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity
 @Table(name="ad")
+@EqualsAndHashCode
+@ToString
 public class Ad {
 
     @Id
