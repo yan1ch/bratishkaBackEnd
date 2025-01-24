@@ -21,4 +21,8 @@ public class CityService {
     public List<City> getAllCitiesSortedByName() {
         return cityRepository.findAllByOrderByCityNameAsc();
     }
+
+    public void deleteCityById(long id) {
+        cityRepository.deleteById(id);
+    }
 }

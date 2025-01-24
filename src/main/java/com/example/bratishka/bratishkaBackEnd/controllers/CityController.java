@@ -25,4 +25,10 @@ public class CityController {
     public ResponseEntity<List<City>> getAllCities() {
         return ResponseEntity.ok(cityService.getAllCitiesSortedByName());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCity(@PathVariable long id) {
+        cityService.deleteCityById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
