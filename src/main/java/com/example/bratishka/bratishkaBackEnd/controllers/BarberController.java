@@ -13,11 +13,9 @@ import java.util.List;
 @RequestMapping("/barbers")
 public class BarberController {
     private final BarberService barberService;
-    private final BarberRepository barberRepository;
 
-    public BarberController(BarberService barberService, BarberRepository barberRepository) {
+    public BarberController(BarberService barberService) {
         this.barberService = barberService;
-        this.barberRepository = barberRepository;
     }
 
     @PostMapping("/get")

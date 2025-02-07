@@ -1,5 +1,6 @@
 package com.example.bratishka.bratishkaBackEnd.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
@@ -29,6 +30,7 @@ public class Shop {
     @Column(name="link_tg")
     private String linkTg;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Barber> barbers;
 
