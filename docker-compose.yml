@@ -11,7 +11,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  java-app:
+  java-app-admin:
     build:
       context: .
       dockerfile: Dockerfile
@@ -23,6 +23,19 @@ services:
     - "8080:8080"
     depends_on:
     - postgres
+
+  java-app-user:
+    build:
+      context: .
+      dockerfile: Dockerfile1
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/bratishka_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: kirill123
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
 
 volumes:
   pgdata:

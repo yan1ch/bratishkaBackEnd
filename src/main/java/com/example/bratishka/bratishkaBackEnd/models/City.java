@@ -1,20 +1,20 @@
 package com.example.bratishka.bratishkaBackEnd.models;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
-@Table(name="cities")
+@Table(name = "cities")
 public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name="city_name")
+    @Column(name = "city_name")
     private String cityName;
 
-    public City() {}
+    public City() {
+    }
 
     public City(String cityName) {
         this.cityName = cityName;

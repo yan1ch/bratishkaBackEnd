@@ -1,7 +1,6 @@
 package com.example.bratishka.bratishkaBackEnd.services;
 
 import com.example.bratishka.bratishkaBackEnd.models.Barber;
-import com.example.bratishka.bratishkaBackEnd.models.City;
 import com.example.bratishka.bratishkaBackEnd.models.Shop;
 import com.example.bratishka.bratishkaBackEnd.repositories.BarberRepository;
 import com.example.bratishka.bratishkaBackEnd.repositories.ShopRepository;
@@ -19,7 +18,7 @@ public class BarberService {
         this.shopRepository = shopRepository;
     }
 
-    public Barber addBarber(Barber barber) {
+    public Barber saveBarber(Barber barber) {
         return barberRepository.save(barber);
     }
 
@@ -27,8 +26,11 @@ public class BarberService {
         barberRepository.deleteById(id);
     }
 
-    public List<Barber> getBarbersByShop(Shop shop) {
-        return barberRepository.findAllByShop(shop);
+    public List<Barber> getBarbersByShopId(long shopId) {
+        return barberRepository.findAllByShop(shopRepository.findById(shopId).get());
     }
 
+    public boolean existsById(long id) {
+        return barberRepository.existsById(id);
+    }
 }

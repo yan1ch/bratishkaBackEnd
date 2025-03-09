@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @Entity
-@Table(name="ad")
+@Table(name = "ad")
 @EqualsAndHashCode
 @ToString
 public class Ad {
@@ -23,7 +23,8 @@ public class Ad {
     @Column(name = "number", nullable = false)
     private int number;
 
-    public Ad() {}
+    public Ad() {
+    }
 
     public Ad(String link, int number) {
         this.link = link;

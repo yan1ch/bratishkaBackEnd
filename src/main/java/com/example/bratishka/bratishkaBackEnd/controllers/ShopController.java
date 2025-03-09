@@ -31,4 +31,11 @@ public class ShopController {
         shopService.deleteShopById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Shop> updateShop(@PathVariable int id, @RequestBody Shop shop) {
+        shop.setId(id);
+        Shop updatedShop = shopService.saveShop(shop);
+        return ResponseEntity.ok(updatedShop);
+    }
 }

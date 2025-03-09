@@ -2,32 +2,31 @@ package com.example.bratishka.bratishkaBackEnd.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
 import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 
 @Entity
-@Table(name="shop")
+@Table(name = "shop")
 public class Shop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    @Column(name="link")
+    @Column(name = "link")
     private String link;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name="link_ym")
+    @Column(name = "link_ym")
     private String linkYm;
 
-    @Column(name="phone")
+    @Column(name = "phone")
     private String phone;
 
-    @Column(name="link_tg")
+    @Column(name = "link_tg")
     private String linkTg;
 
     @JsonIgnore
@@ -35,11 +34,12 @@ public class Shop {
     private List<Barber> barbers;
 
     @ManyToOne
-    @JoinColumn(name="city_id")
+    @JoinColumn(name = "city_id")
     @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private City city;
 
-    public Shop() {}
+    public Shop() {
+    }
 
     public Shop(String link, String name, String linkYm, String phone, String linkTg, City city) {
         this.link = link;
@@ -50,7 +50,7 @@ public class Shop {
         this.city = city;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
