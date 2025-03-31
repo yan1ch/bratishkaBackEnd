@@ -26,8 +26,8 @@ public class BarberService {
         barberRepository.deleteById(id);
     }
 
-    public List<Barber> getBarbersByShopId(long shopId) {
-        return barberRepository.findAllByShop(shopRepository.findById(shopId).get());
+    public List<Barber> getBarbersByShop(Shop shop) {
+        return barberRepository.findAllByShop(shop);
     }
 
     public boolean existsById(long id) {

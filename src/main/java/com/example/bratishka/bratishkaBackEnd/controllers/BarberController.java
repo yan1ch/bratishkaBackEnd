@@ -19,9 +19,9 @@ public class BarberController {
         this.barberService = barberService;
     }
 
-    @GetMapping("/by-shop")
-    public ResponseEntity<List<Barber>> getBarbersByShop(@RequestParam long shopId) {
-        List<Barber> barbers = barberService.getBarbersByShopId(shopId);
+    @PostMapping("/by-shop")
+    public ResponseEntity<List<Barber>> getBarbersByShop(@RequestBody Shop shop) {
+        List<Barber> barbers = barberService.getBarbersByShop(shop);
         return ResponseEntity.ok(barbers);
     }
 

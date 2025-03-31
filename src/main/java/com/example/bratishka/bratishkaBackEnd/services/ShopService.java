@@ -23,7 +23,7 @@ public class ShopService {
         return shopRepository.findAll();
     }
 
-    public void deleteShopById(int id) {
+    public void deleteShopById(long id) {
         if (shopRepository.existsById(id)) {
             shopRepository.deleteById(id);
         } else {
